@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400&family=Roboto:wght@100&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* font-family: 'Poppins', sans-serif; */
+/* font-family: 'Playfair Display', serif; */
+
+/* Navbar CSS */
+.navbar {
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 8px 6px -6px grey;
+  --webkit-box-shadow: 0 8px 6px -6px grey;
+  border-bottom: solid grey;
+}
+
+.active {
+  border-bottom: 2px solid black;
+}
+
+/* Footer CSS */
+.footer {
+  color: white;
+  padding: 25px;
+  background-image: linear-gradient(
+    to right top,
+    #5825cf,
+    #0070fa,
+    #009bf9,
+    #00bde1,
+    #4ddacd
+  );
+}
+.footer a {
+  text-decoration: none;
+  color: white;
+  padding: 8px;
+  font-weight: 600;
+}
+.footer a:hover {
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+  border-bottom: 1px solid black;
+}
+
+/* Page not Found CSS */
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pnf-title {
+  font-size: 100px;
+  font-weight: 700;
+}
+.pnf-heading {
+  font-weight: normal;
+}
+.pnf-btn {
+  color: black;
+  border: 1px solid black;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 13px 19px -5px grey;
+}
+.pnf-btn:hover {
+  box-shadow: 0 10px 15px -5px rgb(14, 13, 13);
+}
+
+/* Contact Us CSS */
+.contactus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.contactus .image {
+  width: 50%;
+}
+
+/* Privacy Policy CSS */
+.policy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.policy .image {
+  width: 50%;
+}
+.policy .policyList {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+
+/* About Us CSS */
+.aboutus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+.aboutus .image {
+  width: 45%;
+}
+
+/* Registration form CSS */
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  flex-direction: column;
+  background-color: #ffffffd4;
+}
+
+.form-container form {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.form-container form h2 {
+  text-shadow: rgba(25, 235, 200, 0.25) 0px 5px 8px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-family: "Playfair Display", serif;
+}
+.form-container form input {
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 5;
+}
+.form-container form button {
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  background-color: black;
+  width: 250px;
+  height: 30px;
+}
+.form-container form button:hover {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  color: rgb(2, 2, 2);
+  background-color: rgb(206, 206, 206);
+  width: 250px;
+  height: 30px;
+}
