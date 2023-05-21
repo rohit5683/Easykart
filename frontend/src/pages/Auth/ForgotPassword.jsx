@@ -1,34 +1,26 @@
-import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
+import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAuth } from "../../context/auth";
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [auth, setAuth] = useAuth();
-
+  const [newPassword, setNewPassword] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post("/api/v1/auth/forgot-password", {
         email,
-        password,
+        newPassword,
+        answer,
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        setAuth({
-          ...auth,
-          user: res.data.user,
-          token: res.data.token,
-        });
-        localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate(location.state || "/");
+        navigate("/login");
       } else {
         toast.error(res.data.message);
       }
@@ -39,10 +31,10 @@ const Login = () => {
   };
 
   return (
-    <Layout title={"Login - Easykart"}>
+    <Layout title={"Forgot Password - Easykart"}>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
-          <h2>LOGIN</h2>
+          <h2>FORGOT PASSWORD</h2>
           <div className="mb-3">
             <input
               type="email"
@@ -57,26 +49,25 @@ const Login = () => {
           <div className="mb-3">
             <input
               type="password"
-              value={password}
+              value={newPassword}
               className="form-control"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your Password"
-              aria-label="password"
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="Set your new Password"
               required
             />
           </div>
-          <div className="mb py-2">
-            <button type="submit">LOGIN</button>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              className="form-control"
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Your Favorite Laptop Company"
+              required
+            />
           </div>
-          <div className="mb-3 py-2">
-            <button
-              type="button"
-              onClick={() => {
-                navigate("/forgot-password");
-              }}
-            >
-              FORGOT PASSWORD
-            </button>
+          <div className="mb-2 py-2">
+            <button type="submit">RESET PASSWORD</button>
           </div>
         </form>
       </div>
@@ -84,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
