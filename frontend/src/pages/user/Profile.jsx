@@ -16,17 +16,37 @@ const Profile = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
+  //get user data
+  useEffect(() => {
+    const { name, email, password, phone, address } = auth?.user;
+    setName(name);
+    setEmail(email);
+    setPassword(password);
+    setPhone(phone);
+    setAddress(address);
+  }, [auth?.user]);
+
   //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/register", {
+      const { data } = await axios.put("/api/v1/auth/profile", {
         name,
         email,
         password,
         phone,
         address,
       });
+      if (data?.error) {
+        toast.error(data?.error);
+      } else {
+        setAuth({ ...auth, user: data?.updatedUser });
+        let ls = localStorage.getItem("auth");
+        ls = JSON.parse(ls);
+        ls.user = data.updatedUser;
+        localStorage.setItem("auth", JSON.stringify(ls));
+        toast.success("Profile updated Successfully");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something Went Wrong");
@@ -52,7 +72,6 @@ const Profile = () => {
                     className="form-control"
                     placeholder="Enter your name"
                     aria-label="name"
-                    required
                     autoFocus
                   />
                 </div>
@@ -64,7 +83,7 @@ const Profile = () => {
                     className="form-control"
                     placeholder="Enter your E-mail"
                     aria-label="email"
-                    required
+                    disabled
                   />
                 </div>
                 <div className="mb-3">
@@ -75,7 +94,6 @@ const Profile = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your Password"
                     aria-label="password"
-                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -86,7 +104,6 @@ const Profile = () => {
                     className="form-control"
                     placeholder="Enter Phone Number"
                     aria-label="phone number"
-                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -97,7 +114,6 @@ const Profile = () => {
                     className="form-control"
                     placeholder="Enter your Address"
                     aria-label="address "
-                    required
                   />
                 </div>
                 <div className="mb-3 py-2">
