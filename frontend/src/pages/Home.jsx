@@ -150,7 +150,8 @@ const Home = () => {
               <div className="card m-2" style={{ width: "18rem" }}>
                 <img
                   style={{
-                    height: "60%",
+                    height: "250px",
+                    width: "250px",
                     padding: "10px",
                   }}
                   src={`/api/v1/product/product-photo/${p._id}`}
